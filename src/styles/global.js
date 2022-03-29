@@ -11,6 +11,8 @@ export const GlobalStyle = createGlobalStyle`
         --yellow: #FFFF81;
         --white: #FFFFFF;
 
+        --blue-ligth: #00DEF0;
+
         --gray: #CFCFCF;
         --gray-ligth: #F2F2F2;
         
@@ -44,6 +46,16 @@ export const GlobalStyle = createGlobalStyle`
     body{
         -webkit-font-smooth: antialiased;
         font-family: 'Lexend Deca', sans-serif;
+    }
+
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+        background-color: #121212;
     }
 
     h1 {
