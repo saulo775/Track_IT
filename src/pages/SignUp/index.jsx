@@ -32,12 +32,13 @@ export function SignUp() {
         });
 
         promise.then((response)=>{
-            console.log("deu bom ", response);
+            console.log(response);
             navigate("/");
         });
 
         promise.catch((err)=>{
-            console.log("deu merda");
+            alert("Algo deu errado. Tente novamente!")
+            console.log(err);
         })
     }
 
@@ -84,7 +85,6 @@ export function SignUp() {
                 <button type="submit">Cadastrar</button>
             </FormData>
             <Link to={"/"}>Já tem uma conta? Faça login!</Link>
-            
         </Container>
     )
     
