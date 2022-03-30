@@ -9,8 +9,10 @@ export const Container = styled.section`
     max-width: 40rem;
 
     a {
-        color: var(--blue-ligth);
+        color: var(--primary-ligth);
+        text-decoration: underline;
         font-size: 1rem;
+        margin: 1.5rem 0;
     }
 `;
 
@@ -20,20 +22,21 @@ export const FormData = styled.form`
     max-width: 100%;
     flex-direction: column;
     padding: 0 2.5rem;
-    margin-bottom: 1.5rem;
 
     input {
         border-radius: 0.25rem;
-        padding: 0.75rem;
+        padding: 0.5rem 0.75rem;
         margin-bottom: 0.5rem;
+        color: var(--text-color);
         outline: none;
         border: 4px solid white;
         transition: 250ms;
         font-size: 1.25rem;
         background-color: #ffffff;
-
-        :focus {
-            border: 4px solid var(--blue-ligth);
+        border: solid 1px var(--input-border);
+        
+        ::placeholder{
+            color: var(--placeholder-color);
         }
     }
 
@@ -43,7 +46,7 @@ export const FormData = styled.form`
         line-height: 1.5rem;
         font-weight: 500;
         border-radius: 0.25rem;
-        padding: 1rem;
+        padding: 0.5rem 1rem;
         background-color: var(--primary-ligth);
         border: none;
     }

@@ -11,20 +11,13 @@ export const GlobalStyle = createGlobalStyle`
         --yellow: #FFFF81;
         --white: #FFFFFF;
 
-        --blue-ligth: #00DEF0;
-
         --gray: #CFCFCF;
         --gray-ligth: #F2F2F2;
         
         --input-color: #B3B3B3;
+        --input-border: #d4d4d4;
+        --placeholder-color: #DBDBDB;
         --text-color: #666666;
-
-
-
-        /*===CORES ALTERA NO FUTURO=== */
-        --black: #181A1D;
-        --black2: #262A2E;
-        --teste1: #6AFF99;
     }
 
     * {
@@ -55,7 +48,7 @@ export const GlobalStyle = createGlobalStyle`
         flex-direction: column;
         width: 100%;
         min-height: 100vh;
-        background-color: #121212;
+        background-color: #FFFFFF;
     }
 
     h1 {

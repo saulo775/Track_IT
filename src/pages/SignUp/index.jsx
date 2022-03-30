@@ -15,7 +15,7 @@ export function SignUp() {
     const [email, setEmail] = React.useState();
     const [password, setPassword] = React.useState();
     const [name, setName] = React.useState();
-    const [photo, setPhoto] = React.useState();
+    const [userAvatar, setUserAvatar] = React.useState();
     const navigate = useNavigate();
     
     function updateInputState(target, setState) {
@@ -27,7 +27,7 @@ export function SignUp() {
         const promise = axios.post(SIGNUP_URL, {
             email: email,
             name: name,
-            image: photo,
+            image: userAvatar,
             password: password,
         });
 
@@ -48,6 +48,7 @@ export function SignUp() {
                 <input 
                     type="email" 
                     placeholder="email"
+                    value={email}
                     onChange={({target})=>{
                         updateInputState(target, setEmail);
                     }}
@@ -55,15 +56,17 @@ export function SignUp() {
                 />
                 <input 
                     type="text" 
-                    required 
                     placeholder="senha"
+                    value={password}
                     onChange={({target})=>{
                         updateInputState(target, setPassword);
                     }}
+                    required 
                 />
                 <input 
                     type="text" 
                     placeholder="nome"
+                    value={name}
                     onChange={({target})=>{
                         updateInputState(target, setName);
                     }}
@@ -72,8 +75,9 @@ export function SignUp() {
                 <input 
                     type="url" 
                     placeholder="foto"
+                    value={userAvatar}
                     onChange={({target})=>{
-                        updateInputState(target, setPhoto);
+                        updateInputState(target, setUserAvatar);
                     }}
                     required 
                 />

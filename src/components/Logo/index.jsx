@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "../../assets/tracking_logo.png";
+import logo from "../../assets/logo-trackit.png";
 
 export function Logo() {
     return (
@@ -13,9 +13,9 @@ export function Logo() {
 const ContentLogo = styled.section`
     text-align: center;
     margin: 4.25rem 0 2rem;
-    font-size: 2.25rem;
+    font-size: 3.25rem;
     color: var(--primary-ligth);
     img {
-        height: 6rem;
+        height: 6.5rem;
     }
 `;
