@@ -6,6 +6,7 @@ import {
     Container,
     FormData,
 } from "../SignIn/styles";
+import { UserContext } from "../../contexts/UserContext";
 
 const LOGIN_URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
 
@@ -13,6 +14,7 @@ export function SignIn() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const navigate = useNavigate();
+    const {token, setToken} = React.useContext(UserContext);
     
     function handleLogin(event) {
         event.preventDefault();
@@ -22,8 +24,9 @@ export function SignIn() {
         });
     
         promise.then((response)=>{
+            setToken(response.data.token);
             navigate("/hoje");
-            console.log(response.data);
+            console.log(response.data.token);
         });
     
         promise.catch((err)=>{
@@ -42,6 +45,7 @@ export function SignIn() {
                 <input 
                     type="email"
                     placeholder="email"
+                    value={email}
                     onChange={({target})=>{
                         updateInputState(target, setEmail);
                     }}
@@ -50,6 +54,7 @@ export function SignIn() {
                 <input 
                     type="text" 
                     placeholder="senha"
+                    value={password}
                     onChange={({target})=>{
                         updateInputState(target, setPassword);
                     }}

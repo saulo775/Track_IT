@@ -32,7 +32,7 @@ export function SignUp() {
         });
 
         promise.then((response)=>{
-            console.log(response);
+            console.log(response.data);
             navigate("/");
         });
 
