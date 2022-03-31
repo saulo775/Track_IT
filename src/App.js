@@ -9,7 +9,7 @@ import { Today } from "./pages/Today";
 import { Historic } from "./pages/Historic";
 
 function App() {
-  const [token, setToken] = React.useState('');
+  const [token, setToken] = React.useState();
   const [userAvatarURL, setUserAvatarURL] = React.useState('');
 
   return (
