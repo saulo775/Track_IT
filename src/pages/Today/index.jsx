@@ -34,20 +34,23 @@ const day = ArrayWeekDay.filter((item, index)=>{
 })
 
 export function Today() {
+    const [habits, setHabits] = React.useState([])
     const {token, setToken} = React.useContext(UserContext);
 
+    console.log(habits)
     React.useEffect(()=>{
         const promise = axios.get(HABITS_TODAY_URL, {headers: {
             Authorization: `Bearer ${token}`
         }});
     
         promise.then((response)=>{
-            console.log(response.data);
+            setHabits(response.data);
         });
         promise.catch((err)=>{
             console.error(err);
         });
     }, []);
+
 
     return token ? (
         <Container>
@@ -57,14 +60,19 @@ export function Today() {
                 <p>Nenhum Hábito concluído ainda</p>
             </InfosDay>
             <ContainerHabits>
-                <Habit/>
-                <Habit/>
-                <Habit/>
-                <Habit/>
-                <Habit/>
-                <Habit/>
-                <Habit/>
-                <Habit/>
+                {
+                    habits.map((item)=>{
+                        return (
+                            <Habit 
+                                key={item.id} 
+                                completed={item.done}
+                                title={item.name}
+                                highestSequence={item.highestSequence}
+                                currentSequence={item.currentSequence}
+                            />
+                        )
+                    })
+                }
             </ContainerHabits>
             <Footer/>
         </Container>
