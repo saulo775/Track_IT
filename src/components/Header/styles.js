@@ -10,6 +10,7 @@ export const Container = styled.header`
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 2;
 `;
 
 export const Content = styled.div`
@@ -26,9 +27,15 @@ export const Content = styled.div`
         line-height: 49px;
         color: var(--white);
     }
-
-    img {
+    
+    div {
         width: 3.1rem;
-        border-radius: 50%;
+        height: 3.1rem;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
     }
 `;

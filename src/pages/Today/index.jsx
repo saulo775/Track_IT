@@ -5,6 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { SignIn } from "../SignIn";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
+import { Habit } from "../../components/Habit";
 
 import { 
     Container, 
@@ -56,7 +57,14 @@ export function Today() {
                 <p>Nenhum Hábito concluído ainda</p>
             </InfosDay>
             <ContainerHabits>
-                hello
+                <Habit/>
+                <Habit/>
+                <Habit/>
+                <Habit/>
+                <Habit/>
+                <Habit/>
+                <Habit/>
+                <Habit/>
             </ContainerHabits>
             <Footer/>
         </Container>

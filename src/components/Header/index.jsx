@@ -12,7 +12,9 @@ export function Header() {
                 <Link to="/hoje">
                     <h1>TrackIt</h1>
                 </Link>
-                <img src={userAvatarURL} alt="avatar do usuário" />
+                <div>
+                    <img src={userAvatarURL} alt="avatar do usuário" />
+                </div>
             </Content>
         </Container>
     )

@@ -27,9 +27,13 @@ export const InfosDay = styled.div`
 
 export const ContainerHabits = styled.section`
     display: flex;
+    gap: 0.7rem;
     flex-direction: column;
     width: 100%;
     height: 100%;
     overflow-y: scroll;
-    background-color: red;
+    padding: 0 1rem 1rem;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;

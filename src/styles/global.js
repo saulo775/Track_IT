@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
         --gray: #CFCFCF;
         --gray-ligth: #F2F2F2;
         
+        --gray-icon: #EBEBEB;
         --input-color: #B3B3B3;
         --input-border: #d4d4d4;
         --placeholder-color: #DBDBDB;
@@ -51,7 +52,7 @@ export const GlobalStyle = createGlobalStyle`
         flex-direction: column;
         width: 100%;
         min-height: 100vh;
-        background-color: #FFFFFF;
+        background-color: var(--gray-ligth);
     }
 
     h1 {
