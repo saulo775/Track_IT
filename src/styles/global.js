@@ -18,6 +18,8 @@ export const GlobalStyle = createGlobalStyle`
         --input-border: #d4d4d4;
         --placeholder-color: #DBDBDB;
         --text-color: #666666;
+
+        --white: #FFFFFF;
     }
 
     * {

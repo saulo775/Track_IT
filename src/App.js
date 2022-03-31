@@ -10,11 +10,14 @@ import { Historic } from "./pages/Historic";
 
 function App() {
   const [token, setToken] = React.useState('');
+  const [userAvatarURL, setUserAvatarURL] = React.useState('');
 
   return (
     <main>
       <BrowserRouter>
-        <UserContext.Provider value={{ token, setToken }}>
+        <UserContext.Provider
+          value={{ token, setToken, userAvatarURL, setUserAvatarURL }}
+        >
           <Routes>
             <Route path="/" element={<SignIn />} />
             <Route path="/cadastro" element={<SignUp />} />

@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Logo } from "../../components/Logo";
-import { 
+import {
     Container,
     FormData,
 } from "../SignIn/styles";
@@ -14,22 +14,25 @@ export function SignIn() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const navigate = useNavigate();
-    const {token, setToken} = React.useContext(UserContext);
-    
+
+    const { setToken, setUserAvatarURL } = React.useContext(UserContext);
+
     function handleLogin(event) {
         event.preventDefault();
         const promise = axios.post(LOGIN_URL, {
             email: email,
             password: password,
         });
-    
-        promise.then((response)=>{
-            setToken(response.data.token);
+
+        promise.then((response) => {
+            const { data } = response;
+            setToken(data.token);
+            setUserAvatarURL(data.image);
             navigate("/hoje");
-            console.log(response.data.token);
+            console.log(response.data);
         });
-    
-        promise.catch((err)=>{
+
+        promise.catch((err) => {
             console.error(err);
         })
     }
@@ -40,22 +43,22 @@ export function SignIn() {
 
     return (
         <Container onSubmit={handleLogin}>
-            <Logo/>
+            <Logo />
             <FormData>
-                <input 
+                <input
                     type="email"
                     placeholder="email"
                     value={email}
-                    onChange={({target})=>{
+                    onChange={({ target }) => {
                         updateInputState(target, setEmail);
                     }}
                     required
                 />
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder="senha"
                     value={password}
-                    onChange={({target})=>{
+                    onChange={({ target }) => {
                         updateInputState(target, setPassword);
                     }}
                     required
@@ -65,5 +68,5 @@ export function SignIn() {
             <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
         </Container>
     )
-    
+
 }
