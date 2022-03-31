@@ -26,4 +26,8 @@ export const Container = styled.div`
         font-size: 4.25rem;
         color: var(--gray-icon);
     }
+
+    .is-complete ion-icon{
+        color: #444487;
+    }
 `;
