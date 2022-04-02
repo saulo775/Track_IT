@@ -25,6 +25,8 @@ export function Habits() {
     const [ cardCreate, setCardCreate] = React.useState(false);
     const [ days, setDays ] = React.useState([]);
 
+    const [rechargeHabits, setRechargeHabits] = React.useState(true);
+
     React.useEffect(() => {
         const promise = axios({
             method: "get",
@@ -36,11 +38,12 @@ export function Habits() {
 
         promise.then((response) => {
             setAllHabits(response.data);
+            console.log(response.data);
         })
         promise.catch((err) => {
             console.log(err)
         })
-    }, []);
+    }, [rechargeHabits]);
 
     function handleSaveNewHabit() {
         if (habit === null || days.length < 1) {
@@ -60,7 +63,10 @@ export function Habits() {
     
             promise.then((response) => {
                 setHabit('');
-                console.log(response);
+                console.log(response.data);
+                setCardCreate(false)
+                setDays([]);
+                setRechargeHabits(!rechargeHabits);
             });
             promise.catch((err) => {
                 console.error(err);
@@ -97,6 +103,29 @@ export function Habits() {
 
     }
 
+    function generateHabitsContainer() {
+        return allHabits ? (
+            <HabitsContainer>
+                {
+                    allHabits.map((item)=>{ 
+                        return (
+                            <CardHabit
+                                id={item.id}
+                                key={item.id}
+                                title={item.name}
+                                days={item.days}
+                            />
+                        );
+                    })
+                }
+            </HabitsContainer> ) :
+            <p>
+                Você não tem nenhum hábito cadastrado ainda. <br />
+                Adicione um hábito para começar a trackear!
+            </p>
+        }
+
+    const habitsContainer = generateHabitsContainer()
     const formHabitCard = generateFormToCreateHabits()
     return token ? (
         <Container>
@@ -108,27 +137,8 @@ export function Habits() {
                 }}>+</button>
             </Title>
             { formHabitCard }
-
-            {
-                allHabits ? <HabitsContainer>
-                    {
-                        allHabits.map((item)=>{ 
-                            return (
-                                <CardHabit
-                                    id={item.id}
-                                    key={item.id}
-                                    title={item.name}
-                                    days={item.days}
-                                />
-                            );
-                        })
-                    }
-                </HabitsContainer> :
-                <p>
-                    Você não tem nenhum hábito cadastrado ainda. <br />
-                    Adicione um hábito para começar a trackear!
-                </p>
-            }
+            {habitsContainer}
+            
 
             <Footer />
         </Container>
