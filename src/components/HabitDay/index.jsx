@@ -5,7 +5,7 @@ import { Container } from "./styles";
 
 const URL_CHECK_HABIT = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/";
 
-export function Habit({
+export function HabitDay({
     id,
     title,
     completed, 
@@ -44,7 +44,7 @@ export function Habit({
 
 
     return (
-        <Container className={isComplete ? "#ff4": ""}>
+        <Container >
             <div>
                 <h3>{title}</h3>
                 <p>Sequência atual: {currentSequence} dias</p>

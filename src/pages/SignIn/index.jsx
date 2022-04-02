@@ -29,7 +29,7 @@ export function SignIn() {
             setToken(data.token);
             setUserAvatarURL(data.image);
             navigate("/hoje");
-            console.log(response.data);
+            //console.log(response.data);
         });
 
         promise.catch((err) => {

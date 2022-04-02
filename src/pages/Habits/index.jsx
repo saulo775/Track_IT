@@ -1,73 +1,137 @@
 import React from "react";
 import axios from "axios";
-import { Header } from "../../components/Header";
-import { Footer } from "../../components/Footer";
 
 import { UserContext } from "../../contexts/UserContext";
+import { SignIn } from "../SignIn";
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
+import { CardHabit } from "../../components/CardHabit";
+import { Day } from "../../components/Day";
 
 import {
     Container,
     Title,
     CreateHabitCard,
+    HabitsContainer,
+    DaysContainer,
 } from "./styles";
 
-const URL_NEW_HABIT = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
+const URL_HABITS = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
 
 export function Habits() {
-    const [habit, setHabit] = React.useState();
     const { token } = React.useContext(UserContext);
+    const [ habit, setHabit ] = React.useState('');
+    const [ allHabits, setAllHabits ] = React.useState();
+    const [ cardCreate, setCardCreate] = React.useState(false);
+    const [ days, setDays ] = React.useState([]);
 
-    function handleSaveNewHabit(){
+    React.useEffect(() => {
         const promise = axios({
-            method: "post",
-            url: `${URL_NEW_HABIT}`,
-            data: {
-                name: `${habit}`,
-                days: [1, 3, 4, 6],
-            },
+            method: "get",
+            url: `${URL_HABITS}`,
             headers: {
                 Authorization: `Bearer ${token}`
             }
-
         });
 
-        promise.then((response)=>{
-            console.log(response);
-        });
-
-        promise.catch((err)=>{
-            console.error(err);
+        promise.then((response) => {
+            setAllHabits(response.data);
         })
+        promise.catch((err) => {
+            console.log(err)
+        })
+    }, []);
+
+    function handleSaveNewHabit() {
+        if (habit === null || days.length < 1) {
+            alert("Preencha todos os campos");
+        }else{
+            const promise = axios({
+                method: "post",
+                url: `${URL_HABITS}`,
+                data: {
+                    name: `${habit}`,
+                    days: days,
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+    
+            promise.then((response) => {
+                setHabit('');
+                console.log(response);
+            });
+            promise.catch((err) => {
+                console.error(err);
+            })
+        }
     }
 
-    return (
-        <Container>
-            <Header/>
-            <Title>
-                <h2>Meus Hábitos</h2>
-                <button>+</button>
-            </Title>
+    function generateFormToCreateHabits() {
+        return cardCreate ? (
             <CreateHabitCard>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder="Nome do hábito"
-                    onChange={({target})=>{
+                    value={habit}
+                    onChange={({ target }) => {
                         setHabit(target.value);
                     }}
                 />
+                <DaysContainer>
+                    <Day title="D" id={0} days={days} setDays={setDays}/>
+                    <Day title="S" id={1} days={days} setDays={setDays}/>
+                    <Day title="T" id={2} days={days} setDays={setDays}/>
+                    <Day title="Q" id={3} days={days} setDays={setDays}/>
+                    <Day title="Q" id={4} days={days} setDays={setDays}/>
+                    <Day title="S" id={5} days={days} setDays={setDays}/>
+                    <Day title="S" id={6} days={days} setDays={setDays}/>
+                </DaysContainer>
                 <span>
                     <button>Cancelar</button>
                     <button onClick={handleSaveNewHabit} type="submit">Salvar</button>
                 </span>
             </CreateHabitCard>
-            <p>
-                Você não tem nenhum hábito cadastrado ainda. <br/>
-                Adicione um hábito para começar a trackear!
-            </p>
+        ): '';
 
+    }
 
-            <Footer/>
+    const formHabitCard = generateFormToCreateHabits()
+    return token ? (
+        <Container>
+            <Header />
+            <Title>
+                <h2>Meus Hábitos</h2>
+                <button onClick={()=>{
+                    setCardCreate(!cardCreate)
+                }}>+</button>
+            </Title>
+            { formHabitCard }
+
+            {
+                allHabits ? <HabitsContainer>
+                    {
+                        allHabits.map((item)=>{ 
+                            return (
+                                <CardHabit
+                                    id={item.id}
+                                    key={item.id}
+                                    title={item.name}
+                                    days={item.days}
+                                />
+                            );
+                        })
+                    }
+                </HabitsContainer> :
+                <p>
+                    Você não tem nenhum hábito cadastrado ainda. <br />
+                    Adicione um hábito para começar a trackear!
+                </p>
+            }
+
+            <Footer />
         </Container>
-    )
-    
+    ) : <SignIn />
+
 }

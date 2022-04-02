@@ -68,6 +68,10 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
+    ion-icon {
+        cursor: pointer;
+    }
+
     [disabled]{
         opacity: 0.6;
         cursor: not-allowed;

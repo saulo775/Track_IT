@@ -5,7 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { SignIn } from "../SignIn";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-import { Habit } from "../../components/Habit";
+import { HabitDay } from "../../components/HabitDay";
 
 import { 
     Container, 
@@ -34,8 +34,8 @@ const day = ArrayWeekDay.filter((item, index)=>{
 })
 
 export function Today() {
-    const [habits, setHabits] = React.useState([])
     const {token, setToken} = React.useContext(UserContext);
+    const [habits, setHabits] = React.useState([]);
 
     console.log(habits)
     React.useEffect(()=>{
@@ -63,10 +63,11 @@ export function Today() {
                 {
                     habits.map((item)=>{
                         return (
-                            <Habit 
+                            <HabitDay
+                                id={item.id}
                                 key={item.id} 
-                                completed={item.done}
                                 title={item.name}
+                                completed={item.done}
                                 highestSequence={item.highestSequence}
                                 currentSequence={item.currentSequence}
                             />
