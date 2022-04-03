@@ -43,6 +43,7 @@ export const GlobalStyle = createGlobalStyle`
     body{
         -webkit-font-smooth: antialiased;
         font-family: 'Lexend Deca', sans-serif;
+        color: var(--text-color);
     }
 
     main {

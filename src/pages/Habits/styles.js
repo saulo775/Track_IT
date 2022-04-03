@@ -40,6 +40,7 @@ export const CreateHabitCard = styled.div`
     background-color: var(--white);
     padding: 1.1rem;
     position: relative;
+    margin-bottom: 1rem;
 
     input {
         color: var(--text-color);
@@ -87,7 +88,7 @@ export const HabitsContainer = styled.div`
     display: flex;
     gap: 0.75rem;
     flex-direction: column;
-    margin: 1rem 0;
+    margin-bottom: 1rem;
     overflow-y: scroll;
 
     ::-webkit-scrollbar {

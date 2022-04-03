@@ -21,7 +21,7 @@ const URL_HABITS = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/h
 export function Habits() {
     const { token } = React.useContext(UserContext);
     const [ habit, setHabit ] = React.useState('');
-    const [ allHabits, setAllHabits ] = React.useState();
+    const [ allHabits, setAllHabits ] = React.useState([]);
     const [ cardCreate, setCardCreate] = React.useState(false);
     const [ days, setDays ] = React.useState([]);
 
@@ -104,7 +104,7 @@ export function Habits() {
     }
 
     function generateHabitsContainer() {
-        return allHabits ? (
+        return allHabits.length >0 ? (
             <HabitsContainer>
                 {
                     allHabits.map((item)=>{ 
@@ -114,6 +114,8 @@ export function Habits() {
                                 key={item.id}
                                 title={item.name}
                                 days={item.days}
+                                rechargeHabits={rechargeHabits}
+                                setRechargeHabits={setRechargeHabits}
                             />
                         );
                     })
@@ -137,7 +139,7 @@ export function Habits() {
                 }}>+</button>
             </Title>
             { formHabitCard }
-            {habitsContainer}
+            { habitsContainer }
             
 
             <Footer />

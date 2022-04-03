@@ -1,4 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 import { Container } from  "./styles";
 // const week= [
@@ -11,13 +13,40 @@ import { Container } from  "./styles";
 //     {day: sabado,short: S},
 // ];
 
-export function CardHabit({id, title, days}) {
+        
+const URL_DELETE = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/"
+
+export function CardHabit({id, title, days, rechargeHabits, setRechargeHabits}) {
+    const { token } = useContext(UserContext);
+
+    function handleDeleteHabit(id) {
+        const promise = axios({
+            method: "delete",
+            url: `${URL_DELETE}+${id}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        promise.then((response)=>{
+            console.log(response);
+            setRechargeHabits(!rechargeHabits);
+        })
+
+        promise.catch((err)=>{
+            console.log(err);
+            alert("Não foi possível excluir")
+        })
+    }
+
     return (
         <Container>
             <h3>{title}</h3>
             <div>
             </div>
-            <ion-icon name="trash-outline"></ion-icon>
+            <ion-icon onClick={()=>{
+                handleDeleteHabit(id)
+            }} name="trash-outline"></ion-icon>
         </Container>
     )
 }
