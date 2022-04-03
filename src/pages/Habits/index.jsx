@@ -95,7 +95,9 @@ export function Habits() {
                     <Day title="S" id={6} days={days} setDays={setDays}/>
                 </DaysContainer>
                 <span>
-                    <button>Cancelar</button>
+                    <button onClick={()=>{
+                        setCardCreate(false);
+                    }}>Cancelar</button>
                     <button onClick={handleSaveNewHabit} type="submit">Salvar</button>
                 </span>
             </CreateHabitCard>
@@ -135,7 +137,7 @@ export function Habits() {
             <Title>
                 <h2>Meus Hábitos</h2>
                 <button onClick={()=>{
-                    setCardCreate(!cardCreate)
+                    setCardCreate(true)
                 }}>+</button>
             </Title>
             { formHabitCard }

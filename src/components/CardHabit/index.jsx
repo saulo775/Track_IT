@@ -20,23 +20,27 @@ export function CardHabit({id, title, days, rechargeHabits, setRechargeHabits}) 
     const { token } = useContext(UserContext);
 
     function handleDeleteHabit(id) {
-        const promise = axios({
-            method: "delete",
-            url: `${URL_DELETE}+${id}`,
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const confirm = window.confirm("Quer Realmente deletar?");
 
-        promise.then((response)=>{
-            console.log(response);
-            setRechargeHabits(!rechargeHabits);
-        })
-
-        promise.catch((err)=>{
-            console.log(err);
-            alert("Não foi possível excluir")
-        })
+        if(confirm){
+            const promise = axios({
+                method: "delete",
+                url: `${URL_DELETE}+${id}`,
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+    
+            promise.then((response)=>{
+                console.log(response);
+                setRechargeHabits(!rechargeHabits);
+            });
+    
+            promise.catch((err)=>{
+                console.log(err);
+                alert("Não foi possível excluir")
+            });
+        }
     }
 
     return (
