@@ -63,7 +63,7 @@ export function SignIn() {
                     required
                 />
                 <input
-                    type="text"
+                    type="password"
                     placeholder="senha"
                     value={password}
                     onChange={({ target }) => {

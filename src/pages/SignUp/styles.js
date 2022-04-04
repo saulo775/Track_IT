@@ -41,6 +41,8 @@ export const FormData = styled.form`
     }
 
     button {
+        display: flex;
+        justify-content: center;
         color: #ffffff;
         font-size: 1.25rem;
         line-height: 1.5rem;
