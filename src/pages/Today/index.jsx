@@ -34,7 +34,7 @@ const day = ArrayWeekDay.filter((item, index)=>{
 })
 
 export function Today() {
-    const {token, setToken} = React.useContext(UserContext);
+    const {token, setToken, setPercentage} = React.useContext(UserContext);
     const [habits, setHabits] = React.useState([]);
     
     let  completed = 0
@@ -46,9 +46,7 @@ export function Today() {
     });
     
     let percentage = Math.ceil(completed/habits.length * 100);
-
-    console.log("teste",percentage);
-    console.log("complet",habits);
+    setPercentage(percentage);
 
     React.useEffect(()=>{
         const promise = axios.get(HABITS_TODAY_URL, {headers: {

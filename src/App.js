@@ -14,6 +14,8 @@ function App() {
   const [token, setToken] = React.useState();
   const [disable, setDisable] = React.useState(false);
   const [userAvatarURL, setUserAvatarURL] = React.useState('');
+  const [percentage, setPercentage] = React.useState(0);
+
 
   return (
     <main>
@@ -24,6 +26,8 @@ function App() {
             setToken, 
             disable, 
             setDisable, 
+            percentage, 
+            setPercentage,
             userAvatarURL, 
             setUserAvatarURL,
           }}

@@ -22,6 +22,10 @@ export const Container = styled.div`
         line-height: 1rem;
     }
 
+    .active {
+        color: var(--green);
+    }
+
     ion-icon {
         font-size: 4.25rem;
         color: var(--gray-icon);

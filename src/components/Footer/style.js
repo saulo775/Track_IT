@@ -20,6 +20,20 @@ export const Content = styled.div`
     width: 100%;
     max-width: 40rem;
 
+    div {
+        position: absolute;
+        bottom: 10px;
+        margin-left: -35px;
+        width: 90px;
+        height: 90px;
+        background-color: var(--primary-ligth);
+        border-radius: 50%;
+        border: solid 8px var(--primary-ligth);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     a {
         color: var(--primary-ligth);
         font-size: 1rem;

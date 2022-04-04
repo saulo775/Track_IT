@@ -47,8 +47,23 @@ export function HabitDay({
         <Container color={isComplete ? "#8FC549" : "#EBEBEB"}>
             <div>
                 <h3>{title}</h3>
-                <p>Sequência atual: {currentSequence} dias</p>
-                <p>Seu recorde: {highestSequence} dias</p>
+                <p>Sequência atual: 
+                    <span
+                        className={
+                            currentSequence >= highestSequence
+                            ? "active" : ""
+                        }
+                    > {currentSequence} dias</span>
+                
+                </p>
+
+                <p>Seu recorde: 
+                    <span className={
+                        currentSequence >= highestSequence
+                        ? "active" : ""
+                        }> {highestSequence} dias
+                    </span>
+                </p>
             </div>
             <ion-icon name="checkbox" onClick={handleSelectHabit}></ion-icon>
         </Container>
