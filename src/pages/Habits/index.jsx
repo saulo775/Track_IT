@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
 
 import { UserContext } from "../../contexts/UserContext";
 import { Header } from "../../components/Header";
@@ -19,13 +20,13 @@ import {
 const URL_HABITS = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
 
 export function Habits() {
-    const { token } = React.useContext(UserContext);
+    const { token, disable, setDisable } = React.useContext(UserContext);
     const [ habit, setHabit ] = React.useState('');
     const [ allHabits, setAllHabits ] = React.useState([]);
     const [ cardCreate, setCardCreate] = React.useState(false);
     const [ days, setDays ] = React.useState([]);
+    const [ rechargeHabits, setRechargeHabits ] = React.useState(true);
 
-    const [rechargeHabits, setRechargeHabits] = React.useState(true);
 
     React.useEffect(() => {
         const promise = axios({
@@ -41,7 +42,7 @@ export function Habits() {
             console.log(response.data);
         })
         promise.catch((err) => {
-            console.log(err)
+            console.log(err);
         })
     }, [rechargeHabits]);
 
@@ -49,6 +50,7 @@ export function Habits() {
         if (habit === null || days.length < 1) {
             alert("Preencha todos os campos");
         }else{
+            setDisable(true);
             const promise = axios({
                 method: "post",
                 url: `${URL_HABITS}`,
@@ -62,6 +64,7 @@ export function Habits() {
             });
     
             promise.then((response) => {
+                setDisable(false);
                 setHabit('');
                 console.log(response.data);
                 setCardCreate(false)
@@ -70,13 +73,14 @@ export function Habits() {
             });
             promise.catch((err) => {
                 console.error(err);
+                setDisable(false);
             })
         }
     }
 
     function generateFormToCreateHabits() {
         return cardCreate ? (
-            <CreateHabitCard>
+            <CreateHabitCard disabled={disable}>
                 <input
                     type="text"
                     placeholder="Nome do hábito"
@@ -98,7 +102,13 @@ export function Habits() {
                     <button onClick={()=>{
                         setCardCreate(false);
                     }}>Cancelar</button>
-                    <button onClick={handleSaveNewHabit} type="submit">Salvar</button>
+                    <button onClick={handleSaveNewHabit} type="submit">
+                        {
+                            disable
+                            ?<ThreeDots color="white" height={20} width={40}/>
+                            :<h4>Salvar</h4>
+                        }
+                    </button>
                 </span>
             </CreateHabitCard>
         ): '';
