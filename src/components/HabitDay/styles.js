@@ -25,6 +25,7 @@ export const Container = styled.div`
     ion-icon {
         font-size: 4.25rem;
         color: var(--gray-icon);
+        color: ${(props)=> props.color};
     }
 
     .is-complete ion-icon{

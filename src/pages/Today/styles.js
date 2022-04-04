@@ -18,6 +18,10 @@ export const InfosDay = styled.div`
         color: var(--primary);
     }
 
+    p.ativo {
+        color: var(--green);
+    }
+
     p {
         font-size: 1.1rem;
         font-weight: 400;

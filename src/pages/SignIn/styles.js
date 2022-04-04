@@ -7,6 +7,7 @@ export const Container = styled.section`
     flex-direction: column;
     width: 100%;
     max-width: 40rem;
+    background-color: white;
 
     a {
         color: var(--primary-ligth);

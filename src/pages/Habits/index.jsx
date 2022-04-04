@@ -27,7 +27,6 @@ export function Habits() {
     const [ days, setDays ] = React.useState([]);
     const [ rechargeHabits, setRechargeHabits ] = React.useState(true);
 
-
     React.useEffect(() => {
         const promise = axios({
             method: "get",
@@ -39,7 +38,7 @@ export function Habits() {
 
         promise.then((response) => {
             setAllHabits(response.data);
-            console.log(response.data);
+            
         })
         promise.catch((err) => {
             console.log(err);

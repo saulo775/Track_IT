@@ -17,7 +17,7 @@ export function HabitDay({
 
     function handleSelectHabit() {
         setIsComplete(!isComplete);
-        if (isComplete) {
+        if (!isComplete) {
             setCheckHabit("check");
         }else{
             setCheckHabit("uncheck");
@@ -27,14 +27,14 @@ export function HabitDay({
     function setCheckHabit(finalRoute) {
         const promise = axios({
             method: "post",
-            url: `${URL_CHECK_HABIT}+${id}/${finalRoute}`,
+            url: `${URL_CHECK_HABIT}${id}/${finalRoute}`,
             headers: {
                 Authorization: `Bearer ${token}`
             }
         });
         
         promise.then((response)=>{
-            console.log(response.status)
+            console.log(response)
         })
 
         promise.catch((err)=>{
@@ -44,7 +44,7 @@ export function HabitDay({
 
 
     return (
-        <Container >
+        <Container color={isComplete ? "#8FC549" : "#EBEBEB"}>
             <div>
                 <h3>{title}</h3>
                 <p>Sequência atual: {currentSequence} dias</p>
