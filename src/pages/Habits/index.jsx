@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 import { UserContext } from "../../contexts/UserContext";
-import { SignIn } from "../SignIn";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { CardHabit } from "../../components/CardHabit";
@@ -146,6 +146,6 @@ export function Habits() {
 
             <Footer />
         </Container>
-    ) : <SignIn />
+    ) : <Navigate to="/"/>
 
 }

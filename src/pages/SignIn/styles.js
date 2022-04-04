@@ -41,6 +41,9 @@ export const FormData = styled.form`
     }
 
     button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #ffffff;
         font-size: 1.25rem;
         line-height: 1.5rem;
@@ -49,6 +52,7 @@ export const FormData = styled.form`
         padding: 0.5rem 1rem;
         background-color: var(--primary-ligth);
         border: none;
+        text-align: center;
     }
 `;
 

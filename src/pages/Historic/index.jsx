@@ -1,10 +1,8 @@
 import React from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-import { SignIn } from "../SignIn";
 import { UserContext } from "../../contexts/UserContext";
 
 import {
@@ -13,7 +11,6 @@ import {
 
 export function Historic() {
     const {token} = React.useContext(UserContext);
-    const navigate = useNavigate();
 
     return token ? (
         <Container>
@@ -22,6 +19,6 @@ export function Historic() {
             <p>Em breve você poderá ver o histórico <br/> dos seus hábitos aqui!</p>
             <Footer/>
         </Container>
-    ) : <SignIn/>
+    ) : <Navigate to="/"/>
     
 }

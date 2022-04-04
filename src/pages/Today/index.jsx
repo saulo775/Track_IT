@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { UserContext } from "../../contexts/UserContext";
+import { Navigate } from "react-router-dom";
 
-import { SignIn } from "../SignIn";
+import { UserContext } from "../../contexts/UserContext";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { HabitDay } from "../../components/HabitDay";
@@ -51,7 +51,6 @@ export function Today() {
         });
     }, []);
 
-
     return token ? (
         <Container>
             <Header/>
@@ -77,5 +76,5 @@ export function Today() {
             </ContainerHabits>
             <Footer/>
         </Container>
-    ) : <SignIn/>
+    ) : <Navigate to="/" />
 }

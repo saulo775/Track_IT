@@ -1,11 +1,10 @@
 import React from "react";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner"
+
 import { Link, useNavigate } from "react-router-dom";
 import { Logo } from "../../components/Logo";
-import {
-    Container,
-    FormData,
-} from "../SignIn/styles";
+import { Container, FormData } from "../SignIn/styles";
 import { UserContext } from "../../contexts/UserContext";
 
 const LOGIN_URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
@@ -13,27 +12,36 @@ const LOGIN_URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/au
 export function SignIn() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    
+    const { 
+        setToken, 
+        disable,
+        setDisable, 
+        setUserAvatarURL 
+    } = React.useContext(UserContext);
+
     const navigate = useNavigate();
-
-    const { setToken, setUserAvatarURL } = React.useContext(UserContext);
-
+            
     function handleLogin(event) {
         event.preventDefault();
+        setDisable(true);
         const promise = axios.post(LOGIN_URL, {
             email: email,
             password: password,
         });
 
         promise.then((response) => {
+            setDisable(false);
             const { data } = response;
             setToken(data.token);
             setUserAvatarURL(data.image);
             navigate("/hoje");
-            //console.log(response.data);
         });
 
         promise.catch((err) => {
             console.error(err);
+            alert("Ocorreu um erro, Tente novamente!");
+            setDisable(false);
         })
     }
 
@@ -42,9 +50,9 @@ export function SignIn() {
     }
 
     return (
-        <Container onSubmit={handleLogin}>
+        <Container onSubmit={handleLogin} >
             <Logo />
-            <FormData>
+            <FormData disabled={disable}>
                 <input
                     type="email"
                     placeholder="email"
@@ -63,7 +71,14 @@ export function SignIn() {
                     }}
                     required
                 />
-                <button type="submit">Entrar</button>
+
+                <button type="submit">
+                    {
+                        disable
+                        ?<ThreeDots color="white" height={30} width={60}/>
+                        :<h4>Entrar</h4>
+                    }
+                </button>
             </FormData>
             <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
         </Container>
