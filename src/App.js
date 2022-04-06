@@ -1,8 +1,8 @@
-import { Register } from "./pages/Register";
+import { SignUp } from "./pages/SignUp";
 
 function App() {
   return (
-    <Register/>
+    <SignUp/>
   );
 }
 

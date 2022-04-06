@@ -7,6 +7,9 @@ export const GlobalStyle = createGlobalStyle`
         --secondary: #00B0D9;
         --green: #73F9B8;
         --blue: #16A9D2;
+
+        --white: #FFFFFF;
+        --black: #191919;
     }
 
     * {
@@ -26,13 +29,16 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background: var(--background);
         -webkit-font-smooth: antialiased;
     }
 
     body, input, textarea, button {
         font-family: 'Josefin Sans', sans-serif;
         font-weight: 400;
+    }
+
+    h1 {
+        font-family: 'Fredericka the Great', cursive;
     }
     
     h1, h2, h3, h4, h5, h6, strong {
