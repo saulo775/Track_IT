@@ -53,4 +53,8 @@ export const GlobalStyle = createGlobalStyle`
     button {
         cursor: pointer;
     }
+
+    :disabled{
+        background-color: #FFFFFF90;
+    }
 `;

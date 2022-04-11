@@ -15,20 +15,20 @@ export const Content = styled.div`
     width: 100%;
     max-width: 40rem;
     flex-direction: column;
+    text-align: center;
 `;
 
 export const Logo = styled.div`
     text-align: center;
-    margin-top: 6rem;
+    margin-top: 2rem;
 
     img {
-        width: 8rem;
+        width: 10rem;
     }
 
     h1 {
         font-size: 3rem;
         color: var(--white);
-        margin-top: 1rem;
     }
 `;
 
@@ -51,5 +51,31 @@ export const Form = styled.form`
         :focus {
             outline:solid 2px var(--green);
         }
+    }
+
+    button {
+        background-color: white;
+        color: var(--secondary);
+        max-width: 16rem;
+        border-radius: 2rem;
+        border: 2px solid var(--secondary-ligth);
+        padding: 0.75rem 2rem;
+        font-size: 1.25rem;
+        margin: 1rem auto 0.75rem;
+        -webkit-box-shadow: 2px 2px 21px -10px rgba(25,25,25,1);
+        -moz-box-shadow: 2px 2px 21px -10px rgba(25,25,25,1);
+        box-shadow: 2px 2px 21px -10px rgba(25,25,25,1);
+        transition: 200ms;
+
+        :hover {
+            background-color: #73F9B870;
+            color: white;
+        }
+    }
+
+    a {
+        color: var(--green);
+        font-weight: 700;
+        font-size: 1rem;
     }
 `;
